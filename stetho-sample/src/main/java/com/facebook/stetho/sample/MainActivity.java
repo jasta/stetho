@@ -2,13 +2,10 @@
 
 package com.facebook.stetho.sample;
 
-import java.io.IOException;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,6 +17,7 @@ public class MainActivity extends Activity {
 
     findViewById(R.id.settings_btn).setOnClickListener(mMainButtonClicked);
     findViewById(R.id.apod_btn).setOnClickListener(mMainButtonClicked);
+    findViewById(R.id.profiler_btn).setOnClickListener(mMainButtonClicked);
   }
 
   @Override
@@ -46,6 +44,8 @@ public class MainActivity extends Activity {
         SettingsActivity.show(MainActivity.this);
       } else if (id == R.id.apod_btn) {
         APODActivity.show(MainActivity.this);
+      } else if (id == R.id.profiler_btn) {
+        ProfilerActivity.show(MainActivity.this);
       }
     }
   };
