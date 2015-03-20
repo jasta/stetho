@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.SystemClock;
 import com.facebook.stetho.common.LogRedirector;
 import com.facebook.stetho.common.LogUtil;
+import com.facebook.stetho.inspector.console.CLog;
 import com.facebook.stetho.inspector.heap.AllocationTracker;
 import com.facebook.stetho.inspector.jsonrpc.JsonRpcException;
 import com.facebook.stetho.inspector.jsonrpc.JsonRpcPeer;
@@ -84,7 +85,7 @@ public class HeapProfiler implements ChromeDevtoolsDomain {
       } catch (IOException e) {
         LogRedirector.e(TAG, "Error sending snapshot file: " + heapsnapshotFile, e);
       } finally {
-        heapsnapshotFile.delete();
+        //heapsnapshotFile.delete();
       }
     }
   }
@@ -124,7 +125,8 @@ public class HeapProfiler implements ChromeDevtoolsDomain {
     if (AllocationTracker.isStarted()) {
       return false;
     }
-    File file = sContext.getFileStreamPath("stetho-allocations.heapsnapshot");
+    //File file = sContext.getFileStreamPath("stetho-allocations.heapsnapshot");
+    File file = new File("/sdcard/stetho-allocations.heapsnapshot");
     AllocationTracker.start(file.getAbsolutePath());
     sTrackingFile = file;
     return true;

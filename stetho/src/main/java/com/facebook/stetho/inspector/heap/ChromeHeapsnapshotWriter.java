@@ -168,6 +168,9 @@ class ChromeHeapsnapshotWriter {
     prepareNonEmpty();
 
     for (AllocationInfo allocation : allocations) {
+      if (!fromStethoSample(allocation)) {
+        continue;
+      }
       int traceNodeId = updateOrCreateTraceNodes(allocation);
 
       int allocationNode = addNode(
@@ -182,6 +185,16 @@ class ChromeHeapsnapshotWriter {
           mAllocatedObjectsNodeIndex,
           allocationNode);
     }
+  }
+
+  // DO NOT MERGE, duh :)
+  private static boolean fromStethoSample(AllocationInfo allocation) {
+    for (StackTraceElement element : allocation.getStackTrace()) {
+      if (element.getClassName().contains("com.facebook.stetho.sample")) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private int updateOrCreateTraceNodes(AllocationInfo allocation) {
