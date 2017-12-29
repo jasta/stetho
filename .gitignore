@@ -4,3 +4,8 @@
 *.iml
 .DS_Store
 /build
+*.pyc
+scripts/dist/dist
+scripts/dist/build
+scripts/dist/MANIFEST
+scripts/dist/stetho.egg-info
